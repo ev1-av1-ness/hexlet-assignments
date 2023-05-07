@@ -60,7 +60,7 @@ class AppTest {
                 {" ", " ", "*", "*"},
                 {"*", "*", "*", "*"},
                 {"*", "*", "*", "*"},
-        };;
+        };
         String[][] result = App.enlargeArrayImage(image);
         assertArrayEquals(expectedResult, result);
     }
