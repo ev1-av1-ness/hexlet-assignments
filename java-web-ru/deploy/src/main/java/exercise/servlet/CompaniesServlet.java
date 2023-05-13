@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import static exercise.Data.getCompanies;
 
 public class CompaniesServlet extends HttpServlet {
