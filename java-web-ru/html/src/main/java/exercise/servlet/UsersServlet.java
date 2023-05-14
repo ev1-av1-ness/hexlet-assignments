@@ -52,22 +52,50 @@ public class UsersServlet extends HttpServlet {
 
         // BEGIN
         List<User> users = getUsers();
-        StringBuilder usersTable = new StringBuilder("<table>");
+        StringBuilder usersTable = new StringBuilder();
+        usersTable.append("""
+                <!DOCTYPE html>
+                                <html lang="ru">
+                                    <head>
+                                        <meta charset="UTF-8">
+                                        <title>Example application | Users</title>
+                                        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+                                        rel="stylesheet"
+                                        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+                                        crossorigin="anonymous">
+                                    </head>
+                                    <body>
+                                    <table>
+                                      <thead>
+                                        <tr>
+                                          <th>id</th>
+                                          <th>fullName</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                """
+        );
+
         for (User user : users) {
             usersTable.append("<tr>")
                     .append("<td>").append(user.getId()).append("</td>")
-                    .append("<td>")
-                    .append("<a href=\"/users/"
-                            + user.getId()
-                            + "\">"
-                            + user.getFirstName()
-                            + " "
-                            + user.getLastName()
-                            + "</a>")
+                    .append("<td>").append("<a href=\"/users/")
+                    .append(user.getId()).append("\">")
+                    .append(user.getFirstName())
+                    .append(" ")
+                    .append(user.getLastName())
+                    .append("</a>")
                     .append("</td>")
                     .append("</tr>");
         }
-        usersTable.append("</table>");
+
+        usersTable.append("""
+                                    </tbody>
+                                 </table>
+                                 </body>
+                </html>
+                """
+        );
         response.getWriter().println(usersTable);
         // END
     }
@@ -85,13 +113,44 @@ public class UsersServlet extends HttpServlet {
         if (user == null) {
             response.sendError(404);
         } else {
-            String usersTable = "<table>" + "<tr>" +
-                    "<td>" + user.getId() + "</td>" +
-                    "<td>" + user.getFirstName() + "</td>" +
-                    "<td>" + user.getLastName() + "</td>" +
-                    "<td>" + user.getEmail() + "</td>" +
-                    "</tr>" +
-                    "</table>";
+            StringBuilder usersTable = new StringBuilder();
+            usersTable.append("""
+                    <!DOCTYPE html>
+                                    <html lang="ru">
+                                        <head>
+                                            <meta charset="UTF-8">
+                                            <title>Example application | Users</title>
+                                            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+                                            rel="stylesheet"
+                                            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+                                            crossorigin="anonymous">
+                                        </head>
+                                        <body>
+                                        <table>
+                                          <thead>
+                                            <tr>
+                                              <th>id</th>
+                                              <th>firstName</th>
+                                              <th>lastName</th>
+                                              <th>email</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                    """
+            )
+                    .append("<tr>" + "<td>")
+                    .append(user.getId())
+                    .append("</td>")
+                    .append("<td>")
+                    .append(user.getFirstName())
+                    .append("</td>")
+                    .append("<td>")
+                    .append(user.getLastName())
+                    .append("</td>")
+                    .append("<td>")
+                    .append(user.getEmail())
+                    .append("</td>")
+                    .append("</tr>");
             response.getWriter().println(usersTable);
         }
         // END
