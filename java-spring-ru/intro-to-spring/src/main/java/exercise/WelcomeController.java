@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class WelcomeController {
     @GetMapping("/")
     // Обработчик
-    // Привязываем параметр запроса к параметру метода
-    // и задаём значение по умолчанию
+    // Привязываем параметр запроса к параметру метода и задаём значение по умолчанию
     public String welcome() {
         return "Welcome to Spring";
     }
@@ -18,8 +17,7 @@ public class WelcomeController {
     // Сопоставляем GET запрос на адрес /users с обработчиком
     @GetMapping("/hello")
     // Обработчик
-    // Привязываем параметр запроса к параметру метода
-    // и задаём значение по умолчанию
+    // Привязываем параметр запроса к параметру метода и задаём значение по умолчанию
     public String helloUser(@RequestParam(value = "name", defaultValue = "World") String name) {
         return String.format("Hello, %s!", name);
     }
