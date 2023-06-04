@@ -7,9 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 // BEGIN
 @RestController
 public class WelcomeController {
-    //Реализуйте обработчик, который будет обрабатывать GET-запросы к корневой странице
-    // приложения по пути /. Запрос на эту страницу должен вернуть строку "Welcome to Spring".
-
     @GetMapping("/")
     // Обработчик
     // Привязываем параметр запроса к параметру метода
