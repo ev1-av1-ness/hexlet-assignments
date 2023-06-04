@@ -1,0 +1,43 @@
+databaseChangeLog:
+  # указывает начало единицы изменений
+  -  changeSet:
+       id:  1
+       author: ev1
+       changes:
+         # Создаём таблицу
+         -  createTable:
+              # Указываем имя таблицы
+              tableName:  person
+              # Создаём столбцы таблицы
+              columns:
+                -  column:
+                     # Указываем имя и тип данных в столбце
+                     name:  id
+                     type:  bigint
+                     # Указываем что значение поля генерируется автоматически
+                     autoIncrement:  true
+                     # Указываем, что значение является первичным ключом
+                     constraints:
+                       primaryKey:  true
+                       nullable:  false
+                # Создаём остальные столбцы
+                -  column:
+                     name:  firstname
+                     type:  varchar(50)
+                -  column:
+                     name:  lastname
+                     type:  varchar(50)
+  -  changeSet:
+       id:  2
+       author: ev1
+       changes:
+         - renameColumn:
+             newColumnName: first_name
+             oldColumnName: firstname
+             schemaName: public
+             tableName: person
+         - renameColumn:
+             newColumnName: last_name
+             oldColumnName: lastname
+             schemaName: public
+             tableName: person
