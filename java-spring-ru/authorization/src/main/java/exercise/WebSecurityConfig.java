@@ -29,12 +29,12 @@ public class WebSecurityConfig {
         // BEGIN
         http.csrf()
                 .disable()
-                .authorizeRequests()
+                .authorizeHttpRequests()
                 .and()
                 .sessionManagement()
                 .disable();
 
-        http.authorizeRequests()
+        http.authorizeHttpRequests()
                 .requestMatchers(POST, "/users").permitAll()
                 .requestMatchers(GET, "/users", "/users/{id}").hasAnyRole("ADMIN", "USER")
                 .requestMatchers(DELETE, "/users/{id}").hasRole("ADMIN")
