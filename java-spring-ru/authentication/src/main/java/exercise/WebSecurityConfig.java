@@ -23,7 +23,7 @@ public class WebSecurityConfig {
     // Переопределяет схему аутентификации
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         // BEGIN
-        http.authorizeRequests()
+        http.authorizeHttpRequests()
                 .requestMatchers(POST, "/users").permitAll()
                 .requestMatchers("/").permitAll()
                 .anyRequest().authenticated()
